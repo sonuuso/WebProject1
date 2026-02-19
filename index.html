@@ -1,0 +1,100 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Info</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007BFF; /* Primary color */
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        button {
+            background-color: #007BFF; /* Primary color */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Full width button */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker shade for hover */
+        }
+
+        #result {
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            color: #007BFF; /* Primary color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Information Portal</h1>
+            <p>Enter your USN to find your academic details</p>
+        </header>
+        <main>
+            <input type="text" id="usnInput" placeholder="Enter USN (e.g., 1AB20CS001)" required>
+            <button onclick="fetchStudentInfo()">Search</button><br><br>
+            <button class="admin-button" onclick="redirectToAdmin()">Admin: Add Student</button>
+
+            <div id="result"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        function redirectToAdmin() {
+            window.location.href = 'admin.html'; // Redirect to admin page
+        }
+    </script>
+</body>
+</html>

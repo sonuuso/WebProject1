@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin: Add Student</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #28a745;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Student Details</h1>
+        <form id="addStudentForm">
+            <input type="text" id="usn" placeholder="USN (e.g., 1AB20CS001)" required>
+            <input type="text" id="semMarks" placeholder="Semester Marks (JSON format e.g., {Sem1: 450})" required>
+            <input type="number" id="moocCourses" placeholder="MOOC Courses" required>
+            <input type="number" id="hackathons" placeholder="Hackathons" required>
+            <input type="number" id="aictePoints" placeholder="AICTE Points" required>
+            <input type="number" id="projects" placeholder="Projects" required>
+            <input type="number" id="internships" placeholder="Internships" required>
+            <button type="submit">Add Student</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('addStudentForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const studentData = {
+                usn: document.getElementById('usn').value,
+                semMarks: JSON.parse(document.getElementById('semMarks').value),
+                moocCourses: parseInt(document.getElementById('moocCourses').value),
+                hackathons: parseInt(document.getElementById('hackathons').value),
+                aictePoints: parseInt(document.getElementById('aictePoints').value),
+                projects: parseInt(document.getElementById('projects').value),
+                internships: parseInt(document.getElementById('internships').value),
+            };
+
+            try {
+                const response = await fetch('/api/student', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(studentData),
+                });
+
+                if (response.ok) {
+                    alert('Student added successfully!');
+                } else {
+                    alert('Failed to add student.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            }
+        });
+    </script>
+</body>
+</html>
